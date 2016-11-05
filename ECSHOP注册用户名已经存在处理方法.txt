@@ -1,0 +1,30 @@
+ECSHOP注册用户名已经存在处理方法
+
+注册时出现“用户名已经存在”，解决方法：
+ 
+需要修改JS文件夹下的user.js，在function registed_callback(result)和function check_email_callback(result)里分别加上
+ 
+result = result.replace(nrg, '')；
+ 
+这一句就好了。
+ 
+如下：
+ 
+function registed_callback(result)
+{result = result.replace(nrg, '');
+  if ( result == true
+ 
+ 
+如果还不能解决：
+直接用原程序包中的 user.php （根目录下）替换现有的 user.php文件，“用户名存在”的问题迎刃而解~~~
+
+
+2
+在加入第三方登陆插件之后出现这种问题，没有进行uc整合，php验证的结果是返回true， 从网上搜集到的方法都用遍了，依然无法注册，后面只好自己改进了，加上网上的方法进行总结
+1.需要修改JS文件夹下的user.js，在function registed_callback(result)和function check_email_callback(result)里分别加上
+result =61; result.replace(/\n|\r/g, '')
+这一句就好了。
+2.去掉 user.php 最后的PHP代码结束标记“?>"后面有多出的空格或换行。
+3.原版user.php覆盖
+需要修改JS文件夹下的user.js，在function is_registered(username )和function checkEmail(email)里（和第一点不同，这是我自己改的）分别加上
+result = result.replace(/\n|\r/g, '')

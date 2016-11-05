@@ -1,0 +1,15 @@
+Discuz! X3.1手机触屏版上传图片质量加强
+
+Discuz! X3.1手机触屏版上传图片质量过低，在这个带宽飞速发展的时代，显然已经跟不上步伐了，现在没几个人在为流量发愁，而图片质量太低却会影响会员的发帖欲望。 Discuz! X3.1的触屏版是应用的html5 canvas接口进行处理图片的。 Discuz! X3.1的触屏版是应用的html5 canvas接口进行处理图片的。
+我们要修改的文件位于：/static/js/mobile/buildfileupload.js
+修改329和330行：
+            var maxheight = 500;
+            var maxwidth = 500;
+修改为：
+            var maxheight = 1000;
+            var maxwidth = 3000;
+
+修改第372行：
+                var newdataurl = canvas.toDataURL(s.files[0].type).replace(/data:.+;base64,/, '');
+修改为：
+	  var newdataurl = canvas.toDataURL(s.files[0].type,1.0).replace(/data:.+;base64,/, '');

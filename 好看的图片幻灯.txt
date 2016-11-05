@@ -1,0 +1,194 @@
+﻿//第一种幻灯
+<style>
+.bi_ws { float:left; width:456px; height:360px; background-color:#bb9b6c; overflow:hidden; }/*幻灯片的整体大小*/
+.pi_cx { display:inline; position:relative; float:left; width:355px; height:350px; overflow:hidden; margin:6px 0 6px 6px; }/*大图片区域样式*/
+.pi_cx div img { width:350px; height:350px; border:1px solid #946826; }/*大图片的大小*/
+.bi_ws_op { margin-left: 8px; position:absolute; left:5; bottom:3px; width:350px; height:63px; color:#FFF;  }/*字幕区定义*/
+.bi_ws_opdiv { position:absolute; left:0; bottom:0px; width:350px; height:68px; background:#000; opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50); }/*标题区背景 透明度50%*/
+.bi_ws_op h2 a{ font-size: 18px; font-weight: bolder; color:#FF0 }/*文章标题样式*/
+.bi_ws_op h2 a:hover { text-decoration:none;  }/*文章标题鼠标经过样式*/
+
+.bi_ws_btn img { width:75px; height:75px; margin:9px 8px 0px 3px ; border:1px solid #ffffff;  float:right; cursor:pointer;  opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=70);}/*缩略图样式（非焦点缩略图）*/
+.bi_ws .bi_ws_btn .on{ border:3px solid #4899e8 ; width:77px; height:77px; opacity:1; -moz-opacity:1; filter:alpha(opacity=100); }/*焦点缩略图样式*/
+
+</style>
+<div class=" bi_ws slidebox">
+    <div class="pi_cx slideshow">
+        [loop]
+          <div>
+           <a href="{url}"{target}><img src="{pic}" width="{picwidth}" height="{picheight}" /></a>
+           <div class="bi_ws_opdiv"></div>
+           <div class="bi_ws_op">
+             <ul>
+              <li>
+               <h2><a href="{url}"{target}>{title}</a></h2>
+               <p style="padding-right:3px"><span style="font-size: 12px">{summary}</span></p> 
+              </li>
+             </ul>
+           </div>
+          </div>
+        [/loop]
+    </div>
+    
+    <div class="bi_ws_btn slidebar">
+        [loop1]
+           <img src="{pic}" />
+        [/loop1]
+    </div>
+<script type="text/javascript">runslideshow();</script>
+</div>
+
+
+//第二种幻灯效果
+<style>
+.slide-player { position:relative; overflow:hidden; width:292px; height:219px; }//这里的宽度和高度都可以调整，不过要和模板的数据一致
+.cnt-sub .slide-player span { height:50px; font:20px/50px "microsoft yahei"; }
+.slide-player .slide-item { position:absolute; top:0; left:0; width:100%; height:100%; }
+.slide-item a, .slide-item a:visited { display:block; width:100%; height:100%; color:#FFF; }
+.slide-item a:hover { color:#FFF; text-decoration:none; }
+.slide-item img { width:100%; height:100%; }
+.slide-page { position:absolute; right:0px; bottom:3px; }
+.slide-item span { position:absolute; left:0px; bottom:0px; display:block; width:100%; height:21px; text-indent:5px; line-height:21px; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#66000000',endColorstr='#66000000'); background:rgba(0,0,0,0.4); overflow:hidden; }
+.slide-player .slide-page a, .slide-player .slide-page a:visited { float:left; margin-right:5px; padding-top:13px; width:13px; height:0; text-align:center; font:700 12px/15px Simsun; background:#FFF; border-radius:6px; box-shadow:inset 1px 1px 2px rgba(0,0,0,.4); overflow:hidden; }
+.slide-player .slide-page .on, .slide-player .slide-page .on:visited { text-decoration:none; color:#FFF; background:#f14708; }
+</style>
+
+<div class="slide-player slidebox">
+<ul class="slideshow">
+[loop]
+<li class="slide-item" style="width: {picwidth}px; height: {picheight}px;"><a href="{url}" title="{title}" {target}><img src="{pic}" width="{picwidth}" height="{picheight}"  alt="{title}"/><span class="title">{title}</span> </a></li>
+[/loop]
+</ul>
+<div class="slide-page slidebar">
+[loop1]
+<a href="javascript:;">{currentorder}</a>
+[/loop1]
+</div>
+</div>
+<script type="text/javascript">
+runslideshow();
+</script>
+//注意：第二种在使用的时候需要注意在选择此模板时，设定的幻灯区域要和模板中的一致。
+//第三种:这个缩略图在下边，和第一种是一个代码,已完美解决。
+<style>
+.bi_ws { float:left; width:350px; height:330px; background-color:#999999; overflow:hidden; }/*幻灯片的整体大小*/
+.pi_cx { display:inline; position:relative; float:left; width:337px; height:258px; overflow:hidden; margin:6px 0 3px 6px; }/*大图片区域样式*/
+.pi_cx div img { width:337px; height:258px; }/*大图片的大小*/
+.bi_ws_op { margin-left: 8px;  position:absolute; left:5; bottom:0px; width:322px; height:70px; color:#FFF;  }/*字幕区定义*/
+.bi_ws_opdiv { position:absolute; left:0; bottom:0px; width:337px; height:78px; background:#000; opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50); }/*标题区背景 透明度50%*/
+.bi_ws_op h2 a{ font-size: 18px; color:#FFF; font-weight: bolder; }/*文章标题样式*/
+.bi_ws_op h2 a:hover { text-decoration:underline; color:#FF9300; }/*文章标题鼠标经过样式*/
+.bi_ws_btn { width:344px; height:60px; float:left;margin-left:6px; }/*下侧缩略图区域样式*/
+.bi_ws_btn div { float:left; width:86px; height:60px; cursor:pointer;  margin:1px 0px 1px 0px ; opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=70); }/*下侧缩略图区域中每个缩略图区域样式*/
+.bi_ws_btn img { width:80px; height:54px; margin:0px; border:1px solid #ffffff; }/*缩略图样式（非焦点缩略图）*/
+.bi_ws .bi_ws_btn .on{ background:url(/forum/static/image/common/1-1.png) no-repeat 0 0; width:86px; height:60px;  opacity:1; -moz-opacity:1; filter:alpha(opacity=100); }/*焦点缩略图样式*/
+
+</style>
+<div class=" bi_ws slidebox">
+    <div class="pi_cx slideshow">
+    [loop]
+      <div>
+       <a href="{url}"{target}><img src="{pic}" width="{picwidth}" height="{picheight}" /></a>
+       <div class="bi_ws_opdiv"></div>
+       <div class="bi_ws_op">
+         <ul>
+          <li>
+           <h2><a href="{url}"{target}>{title}</a></h2>
+           <p><span style="font-size: 12px">{summary}</span></p>
+          </li>
+         </ul>
+       </div>
+      </div>
+    [/loop]
+    </div>
+    <div class="bi_ws_btn slidebar" mevent="mouseover" >
+    [loop1]
+       <div><img src="{pic}" /></div>
+    [/loop1]
+    </div>
+<script type="text/javascript">runslideshow();</script>
+</div>
+//第四种效果：较大的幻灯轮播，带缩略图，幻灯尺寸：宽度：653px;高度：310px；
+<style type="text/css">
+.slideshow span.title{font-size:16px;color:#f37100;height:85px; line-height:85px; width:635px; text-align:right;}
+.slidebox{ position:relative;}
+.slidebar img{ height:70px; width:88px;background:#fff;cursor:pointer; color:#333; font-family:"微软雅黑"; font-size:12px; border:2px solid #eee; padding:2px; margin:3px;}
+.slidebar img.on{background:#A3CE4B; color:#fff;}
+.slidebar{position:absolute;bottom:0px;left:0px;}
+</style>
+<div class="module cl slidebox" style="position:relative;">
+<ul class="slideshow">
+    [loop]
+   <li style="width: {picwidth}px; height: {picheight}px;"><a href="{url}"{target}><img     src="{pic}"    width="{picwidth}" height="{picheight}" /></a><span class="title">{title}   </span></li>
+    [/loop]
+</ul>
+<div class="btns slidebar">
+    [loop1]
+        <img src="{pic}" width="52" height="40" />
+    [/loop1]
+</div>
+</div>
+<script type="text/javascript">
+runslideshow();
+</script>
+============================================
+//第五种效果：九宫格幻灯
+<style type="text/css">
+.bignews {
+        height: 310px;
+        width: 940px;
+        background-color: #666;
+}
+.picbox {
+        clear: none;
+        float: left;
+        height: 310px;
+        width: 640px;
+        background-color: #666;
+}
+.bignews_btn {
+        padding: 0px;
+        clear: none;
+        float: right;
+        height: 300px;
+        width: 300px;
+}
+.daiv {
+        clear: none;
+        float: left;
+        height: 310px;
+        width: 630px;
+        background-color: #666;
+}
+.ddiv {
+        float: left;
+        height: 96px;
+        width: 96px;
+}
+.slidebar img {
+        margin-top: 5px;
+        margin-left: 5px;
+}
+
+.slideshow span.title { position: absolute; bottom: 0; left: 0; margin-bottom: 50; width: 100%; height: 32px; line-height: 32px; font-size: 14px; text-indent: 10px; }
+.slidebar li { float: left; margin-right: 1px; width: 95px; height: 95px; line-height: 95px; text-align: center; font-size: 10px; cursor: pointer; }
+.slidebar li.on { background: rgba(255, 255, 255, 225); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr = #50FFFFFF,gradientType=0, endColorstr = #50FFFFFF); color: #000; font-weight: 700; }
+</style>
+<div class="bignews slidebox">
+                    <ul class="picbox slideshow">
+                        [loop]<li class="daiv"><img src="{pic}" width="{picwidth}" height="{picheight}" style="background-color:#666" /><span class="title">{title}</span> </li>
+                        
+                        [/loop]
+</ul>
+<div class="slidebar">
+                        [loop1]
+                                        
+                        
+    <img src="{pic}" width="95" height="95"  />
+                          
+                                        [/loop1]
+                </div>
+            </div>
+<script type="text/javascript">
+runslideshow();
+</script>

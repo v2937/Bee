@@ -1,0 +1,2 @@
+数据恢复后访问
+admin.php?frames=yes&action=cloud&operation=applist

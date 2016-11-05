@@ -1,0 +1,15 @@
+如何删除ecshop后台应用ucenter整合
+
+ 有的客户模版网站后台整合了ucenter,然后想删除掉ucenter会员中心，但是怎么找都找不到卸载删除地方。现在68ecshop的技术来告诉您解决的方法：
+ 
+1 . 进入ecshop后台管理中心----会员管理----会员整合----ecshop---安装，这样就卸载掉了ucenter. 
+ 
+2.  在ecshop后台SQL运行里，分别执行以下两个SQL语句：
+ 
+    update 68ecshop_shop_config set value='ecshop' where code='integrate_code' 
+ 
+与  update 68ecshop_shop_config set value='' where code='integrate_config' 
+ 
+注意：这里的68ecshop_表名前缀，修改自己成自己数据表名的前缀即可
+ 
+3. 采用以上两方法后删除 网站根目录里的uc_clent目录，删除相关表等内容！

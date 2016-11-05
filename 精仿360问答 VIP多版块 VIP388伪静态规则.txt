@@ -1,0 +1,112 @@
+本文档适用于：
+[亮剑]精仿360问答 VIP多版块3.7.1 带手机版 价值388元
+http://www.caogen8.co/thread-11628-1-1.html
+(出处: 草根吧源码论坛)
+
+Apache Web Server(独立主机用户)：
+# Rewrite 亮剑问答
+#首页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/answer\.html$  $1/plugin.php?id=ljww360&%1
+#搜索页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/search\.html$  $1/plugin.php?id=ljww360&mod=search&do=ss&%1
+#问题页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/answer-([0-9]+)-([0-9]+)\.html$  $1/plugin.php?id=ljww360&mod=wtw&wid=$2&tid=$3&%1
+#分类页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/type-([0-9]+)-([0-9]+)-([0-9]+)\.html$  $1/plugin.php?id=ljww360&mod=list&q=$2&catid=$3&upid=$4&%1
+#个人信息页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/my-([a-z]+)\.html$  $1/plugin.php?id=ljww360&mod=wtw&action=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/my-ask-([a-z]+)\.html$  $1/plugin.php?id=ljww360&mod=wtw&myaction=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(.*)/my-whd-([a-z]+)\.html$  $1/plugin.php?id=ljww360&mod=wtw&myaction=$2&%1
+复制代码
+
+
+Apache Web Server(虚拟主机用户)：
+# Rewrite 亮剑问答
+#首页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^answer\.html$  plugin.php?id=ljww360&%1
+#搜索页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^search\.html$  plugin.php?id=ljww360&mod=search&do=ss&%1
+#问题页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^answer-([0-9]+)-([0-9]+)\.html$  plugin.php?id=ljww360&mod=wtw&wid=$1&tid=$2&%1
+#分类页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^type-([0-9]+)-([0-9]+)-([0-9]+)\.html$  plugin.php?id=ljww360&mod=list&q=$1&catid=$2&upid=$3&%1
+#个人信息页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^my-([a-z]+)\.html$  plugin.php?id=ljww360&mod=wtw&action=$1&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^my-ask-([a-z]+)\.html$  plugin.php?id=ljww360&mod=wtw&myaction=$1&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^my-whd-([a-z]+)\.html$  plugin.php?id=ljww360&mod=wtw&myaction=$1&%1
+复制代码
+
+
+IIS Web Server(独立主机用户)：
+RewriteRule ^(.*)/answer\.html$  $1/plugin\.php\?id=ljww360
+RewriteRule ^(.*)/search\.html$  $1/plugin\.php\?id=ljww360&mod=search&do=ss
+RewriteRule ^(.*)/answer-([0-9]+)-([0-9]+)\.html$  $1/plugin\.php\?id=ljww360&mod=wtw&wid=$2&tid=$3
+RewriteRule ^(.*)/type-([0-9]+)-([0-9]+)-([0-9]+)\.html$  $1/plugin\.php\?id=ljww360&mod=list&q=$2&catid=$3&upid=$4
+RewriteRule ^(.*)/my-([a-z]+)\.html$  $1/plugin\.php\?id=ljww360&mod=wtw&action=$2
+RewriteRule ^(.*)/my-ask-([a-z]+)\.html$  $1/plugin\.php\?id=ljww360&mod=wtw&myaction=$2
+RewriteRule ^(.*)/my-whd-([a-z]+)\.html$  $1/plugin\.php\?id=ljww360&mod=wtw&myaction=$2
+复制代码
+
+
+IIS7 Web Server(独立主机用户)：
+<rule name="ljww360_index">
+        <match url="^(.*/)*answer.html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&{R:2}" />
+</rule>
+<rule name="ljww360_search">
+        <match url="^(.*/)*search.html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=search&do=ss&{R:2}" />
+</rule>
+<rule name="ljww360_ask">
+        <match url="^(.*/)*answer-([0-9]+)-([0-9]+).html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=wtw&wid={R:2}&tid={R:3}&{R:4}" />
+</rule>
+<rule name="ljww360_list">
+        <match url="^(.*/)*type-([0-9]+)-([0-9]+)-([0-9]+).html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=list&q={R:2}&catid={R:3}&upid={R:4}&{R:5}" />
+</rule>
+<rule name="ljww360_my">
+        <match url="^(.*/)*my-([a-z]+).html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=wtw&action={R:2}&{R:3}" />
+</rule>
+<rule name="ljww360_my_home">
+        <match url="^(.*/)*my-ask-([a-z]+).html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=wtw&myaction={R:2}&{R:3}" />
+</rule>
+<rule name="ljww360_my_home_1">
+        <match url="^(.*/)*my-whd-([a-z]+).html\?*(.*)$" />
+        <action type="Rewrite" url="{R:1}/plugin.php\?id=ljww360&mod=wtw&myaction={R:2}&{R:3}" />
+</rule>
+复制代码
+
+
+Nginx Web Server：
+rewrite ^([^\.]*)/answer\.html$ $1/plugin.php?id=ljww360 last;
+rewrite ^([^\.]*)/search\.html$ $1/plugin.php?id=ljww360&mod=search&do=ss last;
+rewrite ^([^\.]*)/answer-([0-9]+)-([0-9]+)\.html$ $1/plugin.php?id=ljww360&mod=wtw&wid=$2&tid=$3 last;
+rewrite ^([^\.]*)/type-([0-9]+)-([0-9]+)-([0-9]+)\.html$ $1/plugin.php?id=ljww360&mod=list&q=$2&catid=$3&upid=$4 last;
+rewrite ^([^\.]*)/my-([a-z]+)\.html$ $1/plugin.php?id=ljww360&mod=wtw&action=$2 last;
+rewrite ^([^\.]*)/my-ask-([a-z]+)\.html$ $1/plugin.php?id=ljww360&mod=wtw&myaction=$2 last;
+rewrite ^([^\.]*)/my-whd-([a-z]+)\.html$ $1/plugin.php?id=ljww360&mod=wtw&myaction=$2 last;
+复制代码
+
+
+说明：
+这里放了VIP多版块问答的通用伪静态规则文件，请各位站长根据自身伪静态规则进行设置。
+切记：如果你的论坛规则里有下面这句，一定把我们的规则放在这句之前，如果没有这句，你可以忽略本句话。
+RewriteRule ^(.*)/([a-z]+[a-z0-9_]*)-([a-z0-9_\-]+)\.html(\?(.*))*$ $1/plugin\.php\?id=$2:$3&$5
+复制代码

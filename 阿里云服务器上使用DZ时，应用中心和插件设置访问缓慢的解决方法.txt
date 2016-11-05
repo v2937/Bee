@@ -1,0 +1,28 @@
+阿里云服务器上使用DZ时，应用中心和插件设置访问缓慢的解决方法
+
+首先不知道帖子发的地方对不对，只能选择为求助贴。
+我用的阿里云服务器，DZ X3.2，应用中心起初访问慢，后来插件也访问慢。填写网站信息、网站认证和DNS修改都尝试过，问题都没有顺利解决，终于在淘宝上花了30元（店家只要20元），找了两家，被大牛搞定了，解决办法很简单，但是远程了三个小时才排查到。被缓慢问题困扰了半个月，激动不已，给大家共享出来，貌似网上还没有发现这种解决办法。
+解决方法：修改./source/function/function_cloudaddons.php
+原本为：
+...
+define('CLOUDADDONS_WEBSITE_URL', 'http://addon.discuz.com');
+define('CLOUDADDONS_DOWNLOAD_URL', 'http://addon.discuz.com/index.php');
+define('CLOUDADDONS_DOWNLOAD_IP', '');
+define('CLOUDADDONS_CHECK_URL', 'http://addon1.discuz.com');
+define('CLOUDADDONS_CHECK_IP', '');
+
+...
+
+这段内容再文件的开始处
+只需指定IP，修改为
+
+define('CLOUDADDONS_WEBSITE_URL', 'http://addon.discuz.com');
+define('CLOUDADDONS_DOWNLOAD_URL', 'http://addon.discuz.com/index.php');
+define('CLOUDADDONS_DOWNLOAD_IP', '101.226.129.174');
+define('CLOUDADDONS_CHECK_URL', 'http://addon1.discuz.com');
+define('CLOUDADDONS_CHECK_IP', '101.226.129.174');
+
+
+即可。
+
+解决后分析原因可能是阿里云的服务器DNS安全级别高（修改了谷歌、114的DNS也无法解决），避免了第三方网站运行，指定IP访问就快了。
